@@ -17,6 +17,8 @@ Plugin 'tpope/vim-fugitive'
 
 Plugin 'fatih/vim-go'
 
+Plugin 'nathanaelkane/vim-indent-guides'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -33,3 +35,18 @@ let g:airline_powerline_fonts = 1
 " Show buffers as tabs
 " let g:airline#extensions#tabline#enabled = 1
 
+"
+set tabstop=4
+set shiftwidth=4
+
+" Custom list chars
+set listchars=trail:•,tab:\|\ 
+set list
+
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+syntax on
