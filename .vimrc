@@ -8,16 +8,20 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'tpope/vim-fugitive'
+
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+
 Plugin 'w0ng/vim-hybrid'
-Plugin 'tpope/vim-fugitive'
 
-Plugin 'fatih/vim-go'
+Plugin 'nvie/vim-flake8'
 
-Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'fatih/vim-go'
+" Plugin 'nathanaelkane/vim-indent-guides'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -48,5 +52,9 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
+" Show line numbers and ruler
+set number
+set colorcolumn=80
 
 syntax on
