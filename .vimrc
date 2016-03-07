@@ -19,10 +19,11 @@ Plugin 'terryma/vim-multiple-cursors'
 
 Plugin 'w0ng/vim-hybrid'
 
+Plugin 'fatih/vim-go'
+
 Plugin 'PProvost/vim-ps1'
 
 " Plugin 'nvie/vim-flake8'
-" Plugin 'fatih/vim-go'
 " Plugin 'nathanaelkane/vim-indent-guides'
 
 call vundle#end()            " required
@@ -82,5 +83,10 @@ set smartcase
 " Show line numbers and ruler
 set number
 set colorcolumn=80
+
+" Disable Background Color Erase (BCE) so that color schemes
+" render properly when inside 256-color tmux and GNU screen.
+" see also http://sunaku.github.io/vim-256color-bce.html
+set t_ut=
 
 syntax on
