@@ -13,6 +13,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
+Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'terryma/vim-multiple-cursors'
@@ -21,8 +22,7 @@ Plugin 'w0ng/vim-hybrid'
 
 Plugin 'fatih/vim-go'
 
-Plugin 'PProvost/vim-ps1'
-
+" Plugin 'PProvost/vim-ps1'
 " Plugin 'nvie/vim-flake8'
 " Plugin 'nathanaelkane/vim-indent-guides'
 
@@ -37,10 +37,10 @@ colorscheme hybrid
 
 " Airline plugin
 set laststatus=2  " Always show powerline
-let g:airline_theme='light'
+let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts = 1
 
-" Some windows customizations
+" Some Windows customizations
 if has("win32")
 	let &t_AB="\e[48;5;%dm"
 	let &t_AF="\e[38;5;%dm"
@@ -59,7 +59,7 @@ if has("win32")
 endif
 
 " Show buffers as tabs
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " numbertoggle hotkey remap
 let g:NumberToggleTrigger="<leader>n"
