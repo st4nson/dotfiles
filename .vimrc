@@ -21,6 +21,14 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'w0ng/vim-hybrid'
 
 Plugin 'fatih/vim-go'
+Plugin 'AndrewRadev/splitjoin.vim'
+
+Plugin 'pearofducks/ansible-vim'
+Plugin 'hashivim/vim-terraform'
+
+Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
 
 " Plugin 'PProvost/vim-ps1'
 " Plugin 'nvie/vim-flake8'
@@ -89,4 +97,28 @@ set colorcolumn=80
 " see also http://sunaku.github.io/vim-256color-bce.html
 set t_ut=
 
+set autowrite " autosave files on :make
+
 syntax on
+
+" Golang specific
+" run :GoBuild or :GoTestCompile based on the go file (vim-go-tutorial)
+function! s:build_go_files()
+	let l:file = expand('%')
+	if l:file =~# '^\f\+_test\.go$'
+		call go#cmd#Test(0, 1)
+	elseif l:file =~# '^\f\+\.go$'
+		call go#cmd#Build(0)
+	endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+autocmd FileType go nmap <Leader>d <Plug>(go-doc)
+
+let g:go_list_type = "quickfix"
+let g:go_fmt_command = "goimports"
+
