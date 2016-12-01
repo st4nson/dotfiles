@@ -101,6 +101,15 @@ set autowrite " autosave files on :make
 
 syntax on
 
+" NERDTree
+let g:NERDTreeChDirMode = 2 " switch CWD
+nmap <silent> <F7> :NERDTreeToggle<CR>
+nmap <silent> <leader><F7> :NERDTreeFind<CR>
+
+" ctrlp
+let g:ctrlp_working_path_mode = 'rw' " start search in CWD
+
+
 " Neocomplete
 let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
 let g:neocomplete#enable_at_startup = 1 " Enable neocomplete.
