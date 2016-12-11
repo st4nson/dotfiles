@@ -17,6 +17,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'ervandew/supertab'
 
 Plugin 'w0ng/vim-hybrid'
 
@@ -109,6 +110,10 @@ nmap <silent> <leader><F7> :NERDTreeFind<CR>
 " ctrlp
 let g:ctrlp_working_path_mode = 'rw' " start search in CWD
 
+" SuperTab
+let g:SuperTabClosePreviewOnPopupClose = 1
+
+" set completeopt-=preview
 
 " Neocomplete
 let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
@@ -119,6 +124,9 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax key
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
@@ -131,6 +139,21 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+" Neocomplete and vim-multiple-cursors fix
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+	if exists(':NeoCompleteLock')==2
+		exe 'NeoCompleteLock'
+	endif
+endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+	if exists(':NeoCompleteUnlock')==2
+		exe 'NeoCompleteUnlock'
+	endif
+endfunction
 
 
 " Golang specific
