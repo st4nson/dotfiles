@@ -8,18 +8,20 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Git stuff
 Plugin 'tpope/vim-fugitive'
 
+" Eye candy
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'w0ng/vim-hybrid'
 
+" Navigation
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ervandew/supertab'
-
-Plugin 'w0ng/vim-hybrid'
 
 Plugin 'fatih/vim-go'
 Plugin 'AndrewRadev/splitjoin.vim'
@@ -27,6 +29,7 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'hashivim/vim-terraform'
 
+" Auto completion
 Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
@@ -102,12 +105,17 @@ set autowrite " autosave files on :make
 
 syntax on
 
+" buffers navigation
+nmap <silent> <leader>[ :bprevious<CR>
+nmap <silent> <leader>] :bnext<CR>
+
 " NERDTree
 let g:NERDTreeChDirMode = 2 " switch CWD
 nmap <silent> <F7> :NERDTreeToggle<CR>
 nmap <silent> <leader><F7> :NERDTreeFind<CR>
 
 " ctrlp
+nmap <silent> <leader>' :CtrlPBuffer<CR>
 let g:ctrlp_working_path_mode = 'rw' " start search in CWD
 
 " SuperTab
