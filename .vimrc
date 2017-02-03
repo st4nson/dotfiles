@@ -10,6 +10,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Git stuff
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 " Eye candy
 Plugin 'vim-airline/vim-airline'
@@ -22,12 +23,15 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ervandew/supertab'
+Plugin 'qpkorr/vim-bufkill'
 
 Plugin 'fatih/vim-go'
 Plugin 'AndrewRadev/splitjoin.vim'
 
 Plugin 'pearofducks/ansible-vim'
 Plugin 'hashivim/vim-terraform'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'NBUT-Developers/extra-instant-markdown'
 
 " Auto completion
 Plugin 'Shougo/neocomplete'
@@ -35,7 +39,7 @@ Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 
 " Plugin 'PProvost/vim-ps1'
-" Plugin 'nvie/vim-flake8'
+Plugin 'nvie/vim-flake8'
 " Plugin 'nathanaelkane/vim-indent-guides'
 
 call vundle#end()            " required
@@ -101,13 +105,15 @@ set colorcolumn=80
 " see also http://sunaku.github.io/vim-256color-bce.html
 set t_ut=
 
-set autowrite " autosave files on :make
+set autowrite      " autosave files on :make
+set updatetime=250 " update each 250ms
 
 syntax on
 
 " buffers navigation
 nmap <silent> <leader>[ :bprevious<CR>
 nmap <silent> <leader>] :bnext<CR>
+nmap <silent> <leader>; :BD<CR>
 
 " NERDTree
 let g:NERDTreeChDirMode = 2 " switch CWD
@@ -184,4 +190,7 @@ autocmd FileType go nmap <Leader>d <Plug>(go-doc)
 
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
+
+" Python specific
+autocmd FileType python map <leader>f :call Flake8()<CR>
 
