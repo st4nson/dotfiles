@@ -25,6 +25,8 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ervandew/supertab'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'xolox/vim-easytags'
+Plugin 'xolox/vim-misc'
 
 " Auto completion
 Plugin 'Shougo/neocomplete'
@@ -41,6 +43,7 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'tpope/vim-dispatch'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'w0rp/ale'
+Plugin 'jpalardy/vim-slime'
 
 " Plugin 'NBUT-Developers/extra-instant-markdown'
 " Plugin 'PProvost/vim-ps1'
@@ -113,8 +116,13 @@ set t_ut=
 
 set autowrite      " autosave files on :make
 set updatetime=250 " update each 250ms
+set synmaxcol=120  " syntax hi. only for first 120 chars. Speed improvement for
+                   " files with long lines
 
 syntax on
+
+"" sudo write
+cmap w!! !sudo tee % >/dev/null
 
 "" buffers navigation
 nmap <silent> <leader>[ :bprevious<CR>
@@ -128,6 +136,7 @@ nmap <silent> <leader><F7> :NERDTreeFind<CR>
 
 "" ctrlp
 nmap <silent> <leader>' :CtrlPBuffer<CR>
+nmap <silent> <leader>q :CtrlPTag<CR>
 let g:ctrlp_working_path_mode = 'rw' " start search in CWD
 
 "" SuperTab
@@ -198,7 +207,7 @@ let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 
 "" Python specific
-autocmd FileType python map <leader>f :call Flake8()<CR>
+" autocmd FileType python map <leader>f :call Flake8()<CR>
 
 "" LineNumber color
 exe ":hi! LineNr ctermfg=238"
@@ -216,3 +225,9 @@ highlight ALEErrorSign ctermfg=1
 
 let g:ale_sign_error = nr2char(10007)
 let g:ale_sign_warning = nr2char(10097)
+
+"" vim-dispatch
+
+"" vim-slime
+let g:slime_target = "tmux"
+let g:slime_paste_file = "$HOME/.slime_paste"
