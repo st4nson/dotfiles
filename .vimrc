@@ -16,6 +16,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'arcticicestudio/nord-vim'
 
 " Navigation
 Plugin 'scrooloose/nerdtree'
@@ -57,12 +58,14 @@ filetype plugin indent on    " required
 set term=xterm
 set t_Co=256
 set background=dark
-colorscheme hybrid
+
+let g:nord_italic_comments = 1
+colorscheme nord
 
 
 "" Airline plugin
 set laststatus=2  " Always show powerline
-let g:airline_theme='bubblegum'
+let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
 
 "" Some Windows customizations
@@ -107,7 +110,7 @@ set smartcase
 
 "" Show line numbers and ruler
 set number
-set colorcolumn=80
+set colorcolumn=81
 
 " Disable Background Color Erase (BCE) so that color schemes
 " render properly when inside 256-color tmux and GNU screen.
