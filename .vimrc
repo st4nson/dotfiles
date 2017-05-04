@@ -17,6 +17,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'arcticicestudio/nord-vim'
+Plugin 'guns/xterm-color-table.vim'
 
 " Navigation
 Plugin 'scrooloose/nerdtree'
@@ -213,7 +214,7 @@ let g:go_fmt_command = "goimports"
 " autocmd FileType python map <leader>f :call Flake8()<CR>
 
 "" LineNumber color
-exe ":hi! LineNr ctermfg=238"
+" exe ":hi! LineNr ctermfg=238"
 
 "" EasyMotion
 let g:EasyMotion_do_mapping = 0
@@ -234,3 +235,8 @@ let g:ale_sign_warning = nr2char(10097)
 "" vim-slime
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
+
+" Fix diffs
+highlight DiffAdd term=bold ctermfg=2 ctermbg=0
+highlight DiffDelete term=bold ctermbg=0
+highlight DiffChange term=bold ctermbg=0
