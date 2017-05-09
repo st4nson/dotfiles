@@ -100,7 +100,7 @@ set backspace=indent,eol,start
 
 "" Custom list chars
 set encoding=utf-8
-set listchars=trail:•,tab:\|\ 
+set listchars=eol:↵,trail:•,tab:\|\ 
 set list
 
 "" Searching
@@ -120,7 +120,7 @@ set t_ut=
 
 set autowrite      " autosave files on :make
 set updatetime=250 " update each 250ms
-set synmaxcol=120  " syntax hi. only for first 120 chars. Speed improvement for
+set synmaxcol=250  " syntax hi. only for first 120 chars. Speed improvement for
                    " files with long lines
 
 syntax on
@@ -224,6 +224,8 @@ map <leader><leader>j <Plug>(easymotion-j)
 map <leader><leader>k <Plug>(easymotion-k)
 
 "" Ale
+nmap <silent> ]a <Plug>(ale_next_wrap)
+nmap <silent> [a <Plug>(ale_previous_wrap)
 highlight clear ALEErrorSign
 highlight ALEErrorSign ctermfg=1
 
@@ -240,3 +242,9 @@ let g:slime_paste_file = "$HOME/.slime_paste"
 highlight DiffAdd term=bold ctermfg=2 ctermbg=0
 highlight DiffDelete term=bold ctermbg=0
 highlight DiffChange term=bold ctermbg=0
+
+"" Set persistent undo
+set undofile
+set undodir=~/.vim/undodir
+
+set previewheight=15
