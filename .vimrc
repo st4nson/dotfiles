@@ -21,7 +21,6 @@ Plugin 'guns/xterm-color-table.vim'
 
 " Navigation
 Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ervandew/supertab'
@@ -29,6 +28,9 @@ Plugin 'qpkorr/vim-bufkill'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
+Plugin 'tpope/vim-surround'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 " Auto completion
 Plugin 'Shougo/neocomplete'
@@ -46,6 +48,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'w0rp/ale'
 Plugin 'jpalardy/vim-slime'
+Plugin 'vimwiki/vimwiki'
 
 " Plugin 'NBUT-Developers/extra-instant-markdown'
 " Plugin 'PProvost/vim-ps1'
@@ -138,10 +141,11 @@ let g:NERDTreeChDirMode = 2 " switch CWD
 nmap <silent> <F7> :NERDTreeToggle<CR>
 nmap <silent> <leader><F7> :NERDTreeFind<CR>
 
-"" ctrlp
-nmap <silent> <leader>' :CtrlPBuffer<CR>
-nmap <silent> <leader>q :CtrlPTag<CR>
-let g:ctrlp_working_path_mode = 'rw' " start search in CWD
+"" fzf
+nmap <silent> <C-p> :FZF<CR>
+nmap <silent> <leader>' :Buffers<CR>
+nmap <silent> <leader>q :Tags<CR>
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 "" SuperTab
 let g:SuperTabClosePreviewOnPopupClose = 1
@@ -248,3 +252,16 @@ set undofile
 set undodir=~/.vim/undodir
 
 set previewheight=15
+
+"" Vimwiki
+let g:vimwiki_list = [{'path': '~/.vimwiki/',
+                     \ 'syntax': 'markdown',
+                     \ 'ext': '.md'}]
+let g:vimwiki_table_mappings = 0
+
+hi VimwikiHeader1 guifg=#afafff ctermfg=147
+hi VimwikiHeader2 guifg=#00FF00 ctermfg=10
+hi VimwikiHeader3 guifg=#0000FF ctermfg=12
+hi VimwikiHeader4 guifg=#FF00FF ctermfg=13
+hi VimwikiHeader5 guifg=#00FFFF ctermfg=14
+hi VimwikiHeader6 guifg=#FFFF00 ctermfg=11
