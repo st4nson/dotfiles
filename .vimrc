@@ -42,6 +42,7 @@ Plugin 'fatih/vim-go'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'hashivim/vim-terraform'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'majutsushi/tagbar'
 
 "
 Plugin 'tpope/vim-dispatch'
@@ -129,12 +130,15 @@ set synmaxcol=250  " syntax hi. only for first 120 chars. Speed improvement for
 syntax on
 
 "" sudo write
-cmap w!! !sudo tee % >/dev/null
+cmap w!! w !sudo tee % >/dev/null
 
 "" buffers navigation
 nmap <silent> <leader>[ :bprevious<CR>
 nmap <silent> <leader>] :bnext<CR>
 nmap <silent> <leader>; :BD<CR>
+
+"" Tagbar
+nmap <silent> <F8> :TagbarToggle<CR>
 
 "" NERDTree
 let g:NERDTreeChDirMode = 2 " switch CWD
@@ -213,6 +217,40 @@ autocmd FileType go nmap <leader>d <Plug>(go-doc)
 
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+
+" Tagbar config
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
+\ }
 
 "" Python specific
 " autocmd FileType python map <leader>f :call Flake8()<CR>
