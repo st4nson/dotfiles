@@ -51,7 +51,7 @@ Plugin 'w0rp/ale'
 Plugin 'jpalardy/vim-slime'
 Plugin 'vimwiki/vimwiki'
 
-" Plugin 'NBUT-Developers/extra-instant-markdown'
+Plugin 'NBUT-Developers/extra-instant-markdown'
 " Plugin 'PProvost/vim-ps1'
 " Plugin 'nvie/vim-flake8'
 " Plugin 'nathanaelkane/vim-indent-guides'
@@ -72,24 +72,6 @@ colorscheme nord
 set laststatus=2  " Always show powerline
 let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
-
-"" Some Windows customizations
-if has("win32")
-	let &t_AB="\e[48;5;%dm"
-	let &t_AF="\e[38;5;%dm"
-	let g:airline_powerline_fonts = 0
-	let g:airline_left_sep=''
-	let g:airline_right_sep=''
-
-	if has("gui_running")
-		set guifont=Consolas:h12
-		" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h10
-		set guioptions-=m  "remove menu bar
-		set guioptions-=T  "remove toolbar
-		set guioptions-=r  "remove right-hand scroll bar
-		set guioptions-=L  "remove left-hand scroll bar
-	endif
-endif
 
 "" Show buffers as tabs
 let g:airline#extensions#tabline#enabled = 1
@@ -124,7 +106,7 @@ set t_ut=
 
 set autowrite      " autosave files on :make
 set updatetime=250 " update each 250ms
-set synmaxcol=250  " syntax hi. only for first 120 chars. Speed improvement for
+set synmaxcol=250  " syntax hi. only for first 250 chars. Speed improvement for
                    " files with long lines
 
 syntax on
@@ -268,11 +250,11 @@ map <leader><leader>k <Plug>(easymotion-k)
 "" Ale
 nmap <silent> ]a <Plug>(ale_next_wrap)
 nmap <silent> [a <Plug>(ale_previous_wrap)
-highlight clear ALEErrorSign
-highlight ALEErrorSign ctermfg=1
-
-let g:ale_sign_error = nr2char(10007)
-let g:ale_sign_warning = nr2char(10097)
+"highlight clear ALEErrorSign
+"highlight ALEErrorSign ctermfg=1
+"
+"let g:ale_sign_error = nr2char(10007)
+"let g:ale_sign_warning = nr2char(10097)
 
 "" vim-dispatch
 
@@ -303,3 +285,6 @@ hi VimwikiHeader3 guifg=#0000FF ctermfg=12
 hi VimwikiHeader4 guifg=#FF00FF ctermfg=13
 hi VimwikiHeader5 guifg=#00FFFF ctermfg=14
 hi VimwikiHeader6 guifg=#FFFF00 ctermfg=11
+
+"" extra-instant-markdown
+let g:instant_markdown_autostart = 0

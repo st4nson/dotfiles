@@ -1,0 +1,20 @@
+jenkins-jobs () {
+	docker run -it --rm -v `pwd`:/tmp st4nson/jjb:0.3 "$@"
+}
+
+# fuzzy kubectl exec
+kx () {
+	local pod=($(kubectl get pods --all-namespaces | fzf | awk '{print $1, $2}'))
+	local cmd=${@:-"bash"}
+
+	echo kubectl exec -it --namespace $pod[1] $pod[2] $cmd
+	kubectl exec -it --namespace $pod[1] $pod[2] $cmd
+}
+
+# fuzzy kubectl logs
+kl () {
+	local pod=($(kubectl get pods --all-namespaces | fzf | awk '{print $1, $2}'))
+
+	echo kubectl logs -f --namespace $pod[1] $pod[2]
+	kubectl logs -f --namespace $pod[1] $pod[2]
+}
