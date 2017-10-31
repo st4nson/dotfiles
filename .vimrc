@@ -1,62 +1,58 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" vim-plug init
+call plug#begin('~/.vim/plugged')
 
 " Git stuff
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
 
 " Eye candy
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'guns/xterm-color-table.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'w0ng/vim-hybrid'
+Plug 'arcticicestudio/nord-vim'
+Plug 'guns/xterm-color-table.vim'
 
 " Navigation
-Plugin 'scrooloose/nerdtree'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'ervandew/supertab'
-Plugin 'qpkorr/vim-bufkill'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'xolox/vim-easytags'
-Plugin 'xolox/vim-misc'
-Plugin 'tpope/vim-surround'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'ervandew/supertab'
+Plug 'qpkorr/vim-bufkill'
+Plug 'easymotion/vim-easymotion'
+" Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Auto completion
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neocomplete'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 
 "
-Plugin 'fatih/vim-go'
-Plugin 'pearofducks/ansible-vim'
-Plugin 'hashivim/vim-terraform'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'majutsushi/tagbar'
+Plug 'fatih/vim-go'
+Plug 'pearofducks/ansible-vim'
+Plug 'hashivim/vim-terraform'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'majutsushi/tagbar'
 
 "
-Plugin 'tpope/vim-dispatch'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'w0rp/ale'
-Plugin 'jpalardy/vim-slime'
-Plugin 'vimwiki/vimwiki'
+Plug 'tpope/vim-dispatch'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'w0rp/ale'
+Plug 'jpalardy/vim-slime'
+Plug 'vimwiki/vimwiki'
 
-Plugin 'NBUT-Developers/extra-instant-markdown'
-" Plugin 'PProvost/vim-ps1'
-" Plugin 'nvie/vim-flake8'
-" Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'NBUT-Developers/extra-instant-markdown'
+Plug 'LnL7/vim-nix'
 
-call vundle#end()            " required
+
+call plug#end()            " required
 filetype plugin indent on    " required
 
 "" Theme setup
@@ -234,9 +230,6 @@ let g:tagbar_type_go = {
 	\ 'ctagsargs' : '-sort -silent'
 \ }
 
-"" Python specific
-" autocmd FileType python map <leader>f :call Flake8()<CR>
-
 "" LineNumber color
 " exe ":hi! LineNr ctermfg=238"
 
@@ -253,8 +246,8 @@ nmap <silent> [a <Plug>(ale_previous_wrap)
 "highlight clear ALEErrorSign
 "highlight ALEErrorSign ctermfg=1
 "
-"let g:ale_sign_error = nr2char(10007)
-"let g:ale_sign_warning = nr2char(10097)
+let g:ale_sign_error = nr2char(10007)
+let g:ale_sign_warning = nr2char(10097)
 
 "" vim-dispatch
 
@@ -271,6 +264,7 @@ highlight DiffChange term=bold ctermbg=0
 set undofile
 set undodir=~/.vim/undodir
 
+" preview window size
 set previewheight=15
 
 "" Vimwiki
