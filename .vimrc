@@ -18,6 +18,7 @@ Plug 'guns/xterm-color-table.vim'
 
 " Navigation
 Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'scrooloose/nerdcommenter'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'ervandew/supertab'
@@ -36,7 +37,7 @@ Plug 'Shougo/neosnippet-snippets'
 
 "
 Plug 'fatih/vim-go'
-Plug 'pearofducks/ansible-vim'
+"Plug 'pearofducks/ansible-vim'
 Plug 'hashivim/vim-terraform'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'majutsushi/tagbar'
@@ -47,8 +48,11 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'w0rp/ale'
 Plug 'jpalardy/vim-slime'
 Plug 'vimwiki/vimwiki'
+Plug 'junegunn/goyo.vim'
 
-Plug 'NBUT-Developers/extra-instant-markdown'
+" Plug 'NBUT-Developers/extra-instant-markdown'
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'LnL7/vim-nix'
 
 
@@ -73,7 +77,8 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 "" numbertoggle hotkey remap
-let g:NumberToggleTrigger="<leader>n"
+:nnoremap <silent> <leader>n :set relativenumber!<cr>
+:nnoremap <silent> <leader><leader>n :set nonumber!<cr>
 
 "
 set tabstop=4
@@ -281,4 +286,19 @@ hi VimwikiHeader5 guifg=#00FFFF ctermfg=14
 hi VimwikiHeader6 guifg=#FFFF00 ctermfg=11
 
 "" extra-instant-markdown
-let g:instant_markdown_autostart = 0
+" let g:instant_markdown_autostart = 0
+
+let vim_markdown_preview_github=1
+let vim_markdown_preview_browser='chromium'
+let vim_markdown_preview_hotkey='<leader>p'
+let vim_markdown_preview_use_xdg_open=1
+
+function s:SetYamlSettings()
+    " Set indents compatible to yaml specification
+    setlocal softtabstop=2
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+    setlocal expandtab
+endfunction
+
+autocmd FileType yaml call <SID>SetYamlSettings()

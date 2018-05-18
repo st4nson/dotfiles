@@ -4,7 +4,7 @@ jenkins-jobs () {
 
 # fuzzy kubectl exec
 kx () {
-	local pod=($(kubectl get pods --all-namespaces | fzf | awk '{print $1, $2}'))
+	local pod=($(kubectl get pods --all-namespaces -owide | fzf | awk '{print $1, $2}'))
 	local cmd=${@:-"bash"}
 
 	echo kubectl exec -it --namespace $pod[1] $pod[2] $cmd
@@ -13,8 +13,11 @@ kx () {
 
 # fuzzy kubectl logs
 kl () {
-	local pod=($(kubectl get pods --all-namespaces | fzf | awk '{print $1, $2}'))
+	local pod=($(kubectl get pods --all-namespaces -owide | fzf | awk '{print $1, $2}'))
+	local attr=${@:-""}
 
-	echo kubectl logs -f --namespace $pod[1] $pod[2]
-	kubectl logs -f --namespace $pod[1] $pod[2]
+	echo kubectl logs -f $attr --namespace $pod[1] $pod[2]
+	kubectl logs -f $attr --namespace $pod[1] $pod[2]
+}
+
 }
