@@ -9,7 +9,7 @@ ZSH_THEME="muse"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git wd vi-mode kubectx)
+plugins=(git wd vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -31,7 +31,7 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 
 # Vi-mode indicator
-MODE_INDICATOR="%{$fg_bold[blue] %{$reset_color%}"
+MODE_INDICATOR=" %{$fg_bold[blue]%}%{$reset_color%}"
 
 # 10ms for key timeout
 KEYTIMEOUT=1

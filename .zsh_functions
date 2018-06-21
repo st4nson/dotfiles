@@ -19,5 +19,3 @@ kl () {
 	echo kubectl logs -f $attr --namespace $pod[1] $pod[2]
 	kubectl logs -f $attr --namespace $pod[1] $pod[2]
 }
-
-}
