@@ -202,31 +202,31 @@ local batbg = wibox.container.background(batbar, "#474747", gears.shape.rectangl
 local batwidget = wibox.container.margin(batbg, 2, 7, 4, 4)
 
 -- /home fs
-local fsicon = wibox.widget.imagebox(theme.disk)
-local fsbar = wibox.widget {
-    forced_height    = 1,
-    forced_width     = 59,
-    color            = theme.fg_normal,
-    background_color = theme.bg_normal,
-    margins          = 1,
-    paddings         = 1,
-    ticks            = true,
-    ticks_size       = 6,
-    widget           = wibox.widget.progressbar,
-}
-theme.fs = lain.widget.fs({
-    notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Tamzen 10.5" },
-    settings  = function()
-        if fs_now["/home"].percentage < 90 then
-            fsbar:set_color(theme.fg_normal)
-        else
-            fsbar:set_color("#EB8F8F")
-        end
-        fsbar:set_value(fs_now["/home"].percentage / 100)
-    end
-})
-local fsbg = wibox.container.background(fsbar, "#474747", gears.shape.rectangle)
-local fswidget = wibox.container.margin(fsbg, 2, 7, 4, 4)
+-- local fsicon = wibox.widget.imagebox(theme.disk)
+-- local fsbar = wibox.widget {
+--     forced_height    = 1,
+--     forced_width     = 59,
+--     color            = theme.fg_normal,
+--     background_color = theme.bg_normal,
+--     margins          = 1,
+--     paddings         = 1,
+--     ticks            = true,
+--     ticks_size       = 6,
+--     widget           = wibox.widget.progressbar,
+-- }
+-- theme.fs = lain.widget.fs({
+--     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Tamzen 10.5" },
+--     settings  = function()
+--         if fs_now["/home"].percentage < 90 then
+--             fsbar:set_color(theme.fg_normal)
+--         else
+--             fsbar:set_color("#EB8F8F")
+--         end
+--         fsbar:set_value(fs_now["/home"].percentage / 100)
+--     end
+-- })
+-- local fsbg = wibox.container.background(fsbar, "#474747", gears.shape.rectangle)
+-- local fswidget = wibox.container.margin(fsbg, 2, 7, 4, 4)
 
 -- ALSA volume bar
 local volicon = wibox.widget.imagebox(theme.vol)
@@ -279,6 +279,29 @@ local volumewidget = wibox.container.margin(volumebg, 2, 7, 4, 4)
 -- Weather
 theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
+})
+
+-- CPU
+local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
+local cpu = lain.widget.cpu({
+    settings = function()
+        widget:set_markup(markup.fontfg(theme.font, "#88c0d0", cpu_now.usage .. "% ")) end
+})
+
+-- Coretemp
+local tempicon = wibox.widget.imagebox(theme.widget_temp)
+local temp = lain.widget.temp({
+    settings = function()
+        widget:set_markup(markup.fontfg(theme.font, "#81a1c1", coretemp_now .. "°C "))
+    end
+})
+
+-- MEM
+local memicon = wibox.widget.imagebox(theme.widget_mem)
+local memory = lain.widget.mem({
+    settings = function()
+        widget:set_markup(markup.fontfg(theme.font, "#5e81ac", mem_now.used .. "M "))
+    end
 })
 
 -- Separators
@@ -350,14 +373,23 @@ function theme.at_screen_connect(s)
             wibox.widget.systray(),
             small_spr,
             --mail.widget,
-            mpdicon,
-            theme.mpd.widget,
-            --baticon,
-            --batwidget,
+            --mpdicon,
+            --theme.mpd.widget,
+            cpuicon,
+            cpu.widget,
             bar_spr,
-            fsicon,
-            fswidget,
+            memicon,
+            memory.widget,
             bar_spr,
+            tempicon,
+            temp.widget,
+            bar_spr,
+            baticon,
+            batwidget,
+            bar_spr,
+            -- fsicon,
+            -- fswidget,
+            -- bar_spr,
             volicon,
             volumewidget,
             bar_spr,

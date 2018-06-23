@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+mkdir -p ~/.config/awesome
+
+(cd ~/.config/awesome;
+git clone --recursive https://github.com/lcpz/awesome-copycats.git .)
+
+ln -si "$(pwd)"/awesome/rc.lua ~/.config/awesome/rc.lua
+ln -si "$(pwd)"/awesome/themes/st4nson ~/.config/awesome/themes/st4nson
 ln -si "$(pwd)"/.zshrc ~/.zshrc
 ln -si "$(pwd)"/.zsh_functions ~/.zsh_functions
 ln -si "$(pwd)"/.vimrc ~/.vimrc
