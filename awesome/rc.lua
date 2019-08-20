@@ -55,7 +55,8 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "unclutter -root" }) -- entries must be comma-separated
+run_once({ "unclutter -root -idle 3",
+           "blueman-applet" }) -- entries must be comma-separated
 -- }}}
 
 -- {{{ Variable definitions

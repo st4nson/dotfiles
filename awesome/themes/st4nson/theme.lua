@@ -370,7 +370,6 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
             small_spr,
             --mail.widget,
             --mpdicon,
@@ -383,6 +382,8 @@ function theme.at_screen_connect(s)
             bar_spr,
             tempicon,
             temp.widget,
+            bar_spr,
+            wibox.widget.systray(),
             bar_spr,
             baticon,
             batwidget,
