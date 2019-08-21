@@ -132,6 +132,7 @@ nmap <silent> <leader><F7> :NERDTreeFind<CR>
 nmap <silent> <C-p> :FZF<CR>
 nmap <silent> <leader>' :Buffers<CR>
 nmap <silent> <leader>q :Tags<CR>
+nmap <silent> <leader>= :History<CR>
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 "" SuperTab
@@ -268,6 +269,14 @@ highlight DiffChange term=bold ctermbg=0
 "" Set persistent undo
 set undofile
 set undodir=~/.vim/undodir
+
+" Disable swap and backup files
+set noswapfile
+set nobackup
+set nowb
+
+" System clipboard
+set clipboard=unnamed
 
 " preview window size
 set previewheight=15
