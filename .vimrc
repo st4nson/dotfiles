@@ -7,12 +7,10 @@ call plug#begin('~/.vim/plugged')
 " Git stuff
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'jreybert/vimagit'
 
 " Eye candy
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'w0ng/vim-hybrid'
 Plug 'arcticicestudio/nord-vim'
 Plug 'guns/xterm-color-table.vim'
 
@@ -260,6 +258,8 @@ let g:ale_sign_warning = nr2char(10097)
 "" vim-slime
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
+let g:slime_dont_ask_default = 1
+let g:slime_default_config = {"socket_name": "default", "target_pane": ":.1"}
 
 " Fix diffs
 highlight DiffAdd term=bold ctermfg=2 ctermbg=0
