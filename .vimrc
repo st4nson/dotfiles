@@ -238,11 +238,7 @@ let g:tagbar_type_go = {
 " exe ":hi! LineNr ctermfg=238"
 
 "" EasyMotion
-let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
-nmap <leader><leader>s <Plug>(easymotion-overwin-f)
-map <leader><leader>j <Plug>(easymotion-j)
-map <leader><leader>k <Plug>(easymotion-k)
 
 "" Ale
 nmap <silent> ]a <Plug>(ale_next_wrap)
