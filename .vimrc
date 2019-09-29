@@ -23,38 +23,44 @@ Plug 'ervandew/supertab'
 Plug 'qpkorr/vim-bufkill'
 Plug 'easymotion/vim-easymotion'
 " Plug 'xolox/vim-easytags'
-Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-misc'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Auto completion
-Plug 'Shougo/neocomplete'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-neco'
+Plug 'Shougo/neco-vim'
+"Plug 'maralla/completor.vim'
+"Plug 'Shougo/neocomplete'
+"Plug 'Shougo/neosnippet'
+"Plug 'Shougo/neosnippet-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 
 "
 Plug 'fatih/vim-go'
+Plug 'davidhalter/jedi-vim'
+Plug 'LnL7/vim-nix'
 "Plug 'pearofducks/ansible-vim'
-Plug 'hashivim/vim-terraform'
-Plug 'mustache/vim-mustache-handlebars'
+"Plug 'hashivim/vim-terraform'
+"Plug 'mustache/vim-mustache-handlebars'
 Plug 'majutsushi/tagbar'
 
 "
 Plug 'tpope/vim-dispatch'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 Plug 'jpalardy/vim-slime'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/goyo.vim'
 
-" Plug 'NBUT-Developers/extra-instant-markdown'
-Plug 'JamshedVesuna/vim-markdown-preview'
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'LnL7/vim-nix'
+"Plug 'NBUT-Developers/extra-instant-markdown'
+"Plug 'JamshedVesuna/vim-markdown-preview'
+"Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
-
-call plug#end()            " required
+call plug#end()              " required
 filetype plugin indent on    " required
 
 "" Theme setup
@@ -65,11 +71,46 @@ set background=dark
 let g:nord_italic_comments = 1
 colorscheme nord
 
+"" CoC
+set hidden
+set shortmess+=c
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 "" Airline plugin
 set laststatus=2  " Always show powerline
 let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#coc#enabled = 1
 
 "" Show buffers as tabs
 let g:airline#extensions#tabline#enabled = 1
@@ -136,49 +177,6 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 "" SuperTab
 let g:SuperTabClosePreviewOnPopupClose = 1
 
-" set completeopt-=preview
-
-"" Neocomplete
-let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
-let g:neocomplete#enable_at_startup = 1 " Enable neocomplete.
-let g:neocomplete#enable_smart_case = 1 " Use smartcase
-let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax keyword length.
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-	return neocomplete#close_popup() . "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
-" Neocomplete and vim-multiple-cursors fix
-" Called once right before you start selecting multiple cursors
-function! Multiple_cursors_before()
-	if exists(':NeoCompleteLock')==2
-		exe 'NeoCompleteLock'
-	endif
-endfunction
-
-" Called once only when the multiple selection is canceled (default <Esc>)
-function! Multiple_cursors_after()
-	if exists(':NeoCompleteUnlock')==2
-		exe 'NeoCompleteUnlock'
-	endif
-endfunction
-
-
 "" Golang specific
 " run :GoBuild or :GoTestCompile based on the go file (vim-go-tutorial)
 function! s:build_go_files()
@@ -195,15 +193,22 @@ autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <Leader>c  <Plug>(go-coverage-toggle)
 
-autocmd FileType go nmap <leader>d <Plug>(go-doc)
+"autocmd FileType go nmap <leader>d <Plug>(go-doc)
 
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
 
+let g:go_def_mapping_enabled = 0
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
 
 " Tagbar config
 let g:tagbar_type_go = {
@@ -298,12 +303,12 @@ let vim_markdown_preview_browser='chromium'
 let vim_markdown_preview_hotkey='<leader>p'
 let vim_markdown_preview_use_xdg_open=1
 
-function s:SetYamlSettings()
-    " Set indents compatible to yaml specification
-    setlocal softtabstop=2
-    setlocal tabstop=2
-    setlocal shiftwidth=2
-    setlocal expandtab
-endfunction
+"function s:SetYamlSettings()
+    "" Set indents compatible to yaml specification
+    "setlocal softtabstop=2
+    "setlocal tabstop=2
+    "setlocal shiftwidth=2
+    "setlocal expandtab
+"endfunction
 
-autocmd FileType yaml call <SID>SetYamlSettings()
+"autocmd FileType yaml call <SID>SetYamlSettings()

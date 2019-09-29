@@ -1,0 +1,19 @@
+{
+	"languageserver": {
+		"golang": {
+			"command": "gopls",
+			"rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+			"filetypes": ["go"]
+		}
+	},
+	"suggest.autoTrigger": "always",
+	"python.pythonPath": "/home/st4nson/.nix-profile/bin/python3",
+	"python.linting.pylintPath": "/home/st4nson/.nix-profile/bin/pylint",
+	"python.jediEnabled": true,
+	"yaml.completion": true,
+	"yaml.validate": true,
+	"yaml.hover": true,
+	"yaml.schemas": {
+		"http://json.schemastore.org/gitlab-ci": "./.gitlab-ci.y*ml"
+	}
+}
