@@ -18,12 +18,8 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'scrooloose/nerdcommenter'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'ervandew/supertab'
 Plug 'qpkorr/vim-bufkill'
 Plug 'easymotion/vim-easymotion'
-" Plug 'xolox/vim-easytags'
-" Plug 'xolox/vim-misc'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -74,6 +70,23 @@ colorscheme nord
 "" CoC
 set hidden
 set shortmess+=c
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <C-Space> (<Nul> in Vim) to trigger completion.
+"inoremap <silent><expr> <C-Space> coc#refresh()
+inoremap <silent><expr> <Nul> coc#refresh()
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -173,9 +186,6 @@ nmap <silent> <leader>' :Buffers<CR>
 nmap <silent> <leader>q :Tags<CR>
 nmap <silent> <leader>= :History<CR>
 imap <c-x><c-l> <plug>(fzf-complete-line)
-
-"" SuperTab
-let g:SuperTabClosePreviewOnPopupClose = 1
 
 "" Golang specific
 " run :GoBuild or :GoTestCompile based on the go file (vim-go-tutorial)
