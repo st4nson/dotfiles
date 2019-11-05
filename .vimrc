@@ -39,8 +39,8 @@ Plug 'Shougo/neco-vim'
 Plug 'fatih/vim-go'
 Plug 'davidhalter/jedi-vim'
 Plug 'LnL7/vim-nix'
-"Plug 'pearofducks/ansible-vim'
-"Plug 'hashivim/vim-terraform'
+Plug 'pearofducks/ansible-vim'
+Plug 'hashivim/vim-terraform'
 "Plug 'mustache/vim-mustache-handlebars'
 Plug 'majutsushi/tagbar'
 
@@ -64,6 +64,8 @@ set term=xterm
 set t_Co=256
 set background=dark
 
+let g:nord_italic = 1
+let g:nord_bold = 1
 let g:nord_italic_comments = 1
 colorscheme nord
 
@@ -87,6 +89,9 @@ endfunction
 " Use <C-Space> (<Nul> in Vim) to trigger completion.
 "inoremap <silent><expr> <C-Space> coc#refresh()
 inoremap <silent><expr> <Nul> coc#refresh()
+
+" Close preview window when completion is done
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)

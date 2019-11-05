@@ -4,6 +4,11 @@
 			"command": "gopls",
 			"rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
 			"filetypes": ["go"]
+		},
+		"terraform": {
+			"command": "terraform-lsp",
+			"filetypes": ["terraform"],
+			"initializationOptions": {}
 		}
 	},
 	"suggest.autoTrigger": "always",
@@ -14,6 +19,7 @@
 	"yaml.validate": true,
 	"yaml.hover": true,
 	"yaml.schemas": {
-		"http://json.schemastore.org/gitlab-ci": "./.gitlab-ci.y*ml"
+		"http://json.schemastore.org/gitlab-ci": ".gitlab-ci.y*ml",
+		"http://json.schemastore.org/ansible-stable-2.7": "./playbooks/*.y*ml"
 	}
 }
