@@ -394,6 +394,9 @@ function theme.at_screen_connect(s)
             volicon,
             volumewidget,
             bar_spr,
+            wibox.widget.systray(),
+            bar_spr,
+            pomodoro,
             mytextclock,
         },
     }

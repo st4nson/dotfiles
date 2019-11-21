@@ -51,6 +51,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'jpalardy/vim-slime'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/goyo.vim'
+Plug 'mtth/scratch.vim'
 
 "Plug 'NBUT-Developers/extra-instant-markdown'
 "Plug 'JamshedVesuna/vim-markdown-preview'
@@ -327,3 +328,6 @@ let vim_markdown_preview_use_xdg_open=1
 "endfunction
 
 "autocmd FileType yaml call <SID>SetYamlSettings()
+
+" terraform-vim
+let g:terraform_fmt_on_save=1

@@ -14,6 +14,8 @@
 	"suggest.autoTrigger": "always",
 	"python.pythonPath": "/home/st4nson/.nix-profile/bin/python3",
 	"python.linting.pylintPath": "/home/st4nson/.nix-profile/bin/pylint",
+	"python.linting.pep8Path": "/home/st4nson/.nix-profile/bin/pycodestyle",
+	"python.linting.pep8Enabled": true,
 	"python.jediEnabled": true,
 	"yaml.completion": true,
 	"yaml.validate": true,
